@@ -2,7 +2,7 @@ function [theta, phi_error] = pilot_PLL(xr,fq,fs,loop_type,Bn,zeta)
 % [theta, phi_error] = pilot_PLL(xr,fq,fs,loop_type,Bn,zeta)
 %
 %
-% Mark Wickert, April 2014
+
 
 T = 1/fs;
 % Set the VCO gain in Hz/V  
