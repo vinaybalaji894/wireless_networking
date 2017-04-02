@@ -45,12 +45,11 @@ x2=decimate(lpf1,5);
 
 %% Hear the signal
 
-%sound(x2,48000)
+sound(x2,48000)
 
 %% Band Pass Filter for RDS
 
-
-cutoff1=59000;
+cutoff1=59000
 cutoff2=56000;
 [b2,a2]=butter(N,cutoff2/(fs/2),'high');
 bhpf=filter(b2,a2,disdata);
@@ -73,17 +72,19 @@ angles2=cos(angles);
 %% Multiply BPF output to PLL output
 result=blpf.*angles2;
 z=length(result);
-simpleSA(result,z,240000);
+%simpleSA(result,z,240000);
 
 %% Low Pass filter 
 cutoff3=22000;
-fs3=350000;
+fs3=240000;
 [b3,a3]=butter(N,cutoff3/(fs3/2),'low');
 fresult=filter(b3,a3,result);
 
+%% Decoding PSK
+recovpsk = pskdemod(fresult,2);
 
 
 %g=interp(fresult,20);
 
-%z=length(g);
-%simpleSA(g,z,17500,0,40);
+%z=length(recovpsk);
+%simpleSA(recovpsk,z,17500,0,40);
